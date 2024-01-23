@@ -1,5 +1,5 @@
 <script setup>
-import Component from './assets/Component.vue';
+import MyComponent from './assets/MyComponent.vue';
 /*  
 CE COMPOSANT RACINE APP RESTE EN MODE COMPOSITION API
 IMPORTER LES COMPOSANTS ICI 
@@ -10,7 +10,7 @@ IMPORTER LES COMPOSANTS ICI
 <template>
   <h1>Ok</h1>
   <h2>{{ count }}</h2>
-  <Component count='50'/>
+  <MyComponent count='50'/>
 </template>
 
 <style scoped>

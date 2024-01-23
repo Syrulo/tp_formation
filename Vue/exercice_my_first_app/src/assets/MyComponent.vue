@@ -1,6 +1,6 @@
 <script>
 export default { 
-  name : "Component",
+  name : "MyComponent",
   data () {
     return{
       count : 0,
