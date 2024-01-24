@@ -66,7 +66,8 @@ export default {
             <tbody class="table-group-divider">
                 <!-- remettre en place la boucle v-for expliquer -->
                 <tr 
-                    
+                    v-for="(item, index) in products"
+                    :key = "index"
                 >
                     <td>{{ item.id }}</td>
                     <td>{{ item.name }}</td>

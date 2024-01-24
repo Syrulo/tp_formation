@@ -6,26 +6,26 @@
 <template>
     <!-- redéfinir les slots  -->
         <!-- - nommer les slots -->
-        <!-- - rendu consitionnel de slots / expliquer -->
+        <!-- - rendu conditionnel de slots / expliquer : si il y a qqc dedans, je l'affiche, il n'est plus a null-->
         <!-- - injecter dans le slot Header -->
     <div class="container">
         <header
-            
+            v-if="$slots.header"
             class="p-3 mb-3 border-bottom"
         >
-            <!-- - nommer le slot header -->
-            <slot
-            
-            ></slot>
+            <slot name="header"></slot>
         </header>
-        <main>
-            <!-- -Doit on nommer le slot default ? C'est quoi le slot default ? -->
+        <main
+            v-if="$slots.default"
+        >
             <slot></slot>
         </main>
-        <footer>
-            <!-- - nommer le slot footer -->
+        <footer
+            v-if="$slots.footer"
+        >
             <slot
-                  
+                
+                name="footer"
             ></slot>
         </footer>
     </div>

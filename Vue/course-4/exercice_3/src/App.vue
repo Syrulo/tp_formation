@@ -20,6 +20,7 @@ export default {
   },
   data() {
     return {
+      toggle : false,
       userNavItemsArray : [
         {
           name: "Settings",
@@ -88,6 +89,14 @@ export default {
         price: this.price,
         vta: this.vta
       })
+    },
+    afficher(){
+      if (this.toggle == true){
+        this.toggle = false
+      }
+      else{
+        this.toggle = true
+      }
     }
   }
 }
@@ -98,19 +107,26 @@ export default {
   <main-layout>
     <!-- redéfinir les slots  -->
       <!-- - DEBUT injecter dans le slot Header -->
+  <template v-slot:header>
       <main-nav
         :navItems="navItemsArray"
         :userNavItems="userNavItemsArray"
-        :showUserNav="false"
+        :showUserNav="toggle"
       />
 
+      <!-- contenu pour le slot header -->
+      <h1 class="w-f">Mon Product Store</h1>
+
       <!-- Ajouter un bouton login qui toggle/bascule la valeur de showUserNav -->
+      <button @:click="afficher">
+        Login
+      </button>
       <!-- un bouton -->
       <!-- l'event click -->
       <!-- une methode pour modifier la valeur -->
    
     <!-- - FIN injecter dans le slot Header -->
-    
+  </template>
     <!-- Injecter ici les données dans le slot default 
     du composant main-layout -->
     <!-- Injection dans le Slot default -->
@@ -168,12 +184,14 @@ export default {
         :products="products"  
       />
     </section>
-
+    <template v-slot:footer>
     <!-- Injection dans le slot footer -->
     <!-- <template #footer></template> -->
-    
+  </template>  
   </main-layout>
 </template>
 
 <style scoped>
 </style>
+
+
