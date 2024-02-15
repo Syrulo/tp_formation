@@ -35,19 +35,22 @@ export default {
 </script>
 
 <template>
+        <!-- Mise en place de de la table  -->
     <section id="todos-table" class="container">
         <h2 class="text-center">Liste des activités</h2>
         
-    <!-- Mise en place de de la table  -->
-        <table class="table">
+        <table class="table ">
             <thead>
-                <tr>
+                <!-- Les noms des colones -->
+                <tr class="border border-dark">
                     <th scope="col">Nom</th>
                     <th scope="col">Etat</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
-            <tbody class="table-group-divider">
+            <tbody class="table-group-divider
+            border border-dark">
+                <!-- Boucle sur les éléments du tableau todos -->
                 <tr 
                     v-for="item in getTodos"
                     :key="item.id"
@@ -59,13 +62,13 @@ export default {
                             {{ item.etat }}
                     </td>
                     <td>
+                        <!-- boutons édition et supression -->
                         <button 
                             class="btn btn-primary"
                             @click="editTodo(item.id)"
                         >
                             Éditer
                         </button>
-                        <!-- Ajouter un bouton de suppression d'un produit -->
                         <!-- au clic, appel de la fonction emitDeleteProduct(product) -->
                         <button 
                             class="btn btn-danger"

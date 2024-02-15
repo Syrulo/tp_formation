@@ -1,12 +1,16 @@
 <script>
+// import des stores et fonctionnalités natives
 import { mapState, mapActions } from 'pinia'
 import { useTodosStore } from '../stores/todos'
 
+// export du composant
     export default {
-        name: "ToDo",
+        name: "ToDoAdd",
         emits: ["updateTodo"],
+        // Watcher pour  réagir à l'ajout d'un élément dans la todoList
   watch: {
-    getToDoToEditId(newValue) {
+    getTodoToEditId(newValue) {
+      console.log(this.getEditTodoMode && newValue != null && !this.confirmEditMode)
       if (
         this.getEditTodoMode && newValue != null && !this.confirmEditMode ||
         this.getEditTodoMode && newValue != this.currentTodoId
@@ -19,6 +23,7 @@ import { useTodosStore } from '../stores/todos'
       }
     }
   },
+  // les données du formulaires
   data() {
     return {
       name: "",
@@ -27,6 +32,7 @@ import { useTodosStore } from '../stores/todos'
       currentTodoId: null
     };
   },
+  // Props pour l'édition 
   props: {
     editMode: {
       type: Boolean,
@@ -37,6 +43,7 @@ import { useTodosStore } from '../stores/todos'
       default: null,
     },
   },
+  // création du formulaire à soumettre via méthode
   methods: {
     submitForm() {
       if (this.getEditTodoMode && this.getTodoToEditId != null) {
@@ -92,6 +99,7 @@ import { useTodosStore } from '../stores/todos'
 <template>
 <section>
 <h1> Création d'une activité </h1>
+    <!-- création des paramétres des zones à remplir du formulaire -->
 <form @submit.prevent="submitForm">
       <div class="mb-3">
         <label for="name" class="form-label"> Nom </label>
@@ -105,6 +113,7 @@ import { useTodosStore } from '../stores/todos'
           required
         />       
       </div>
+      <!-- création du menu déroulant permettant de chosir l'état d'avancement d'une tâche -->
       <div class="mb-3">
         <label for="etat" class="form-label">Etat</label>
         <select id="etat" class="form-select" v-model="etat" required>
@@ -114,6 +123,7 @@ import { useTodosStore } from '../stores/todos'
           <option> Fait </option>
         </select>
       </div>
+      <!-- Bouton de création de la tache avec des ternaires en cas d'envoi ou d'édition -->
       <button
         class="btn"
         type="submit"
